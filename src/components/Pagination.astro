@@ -1,0 +1,166 @@
+---
+import ChevronLeft from '@lucide/astro/icons/chevron-left';
+import ChevronRight from '@lucide/astro/icons/chevron-right';
+
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl: string;
+}
+
+const { currentPage, totalPages, baseUrl } = Astro.props;
+
+if (totalPages <= 1) return;
+
+function pageUrl(page: number): string {
+  if (page === 1) return baseUrl;
+  return `${baseUrl}/${page}`;
+}
+
+function range(start: number, end: number): number[] {
+  return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+}
+
+function getPageNumbers(): (number | 'ellipsis')[] {
+  const pages: (number | 'ellipsis')[] = [];
+
+  if (totalPages <= 7) {
+    return range(1, totalPages);
+  }
+
+  pages.push(1);
+
+  if (currentPage > 3) {
+    pages.push('ellipsis');
+  }
+
+  const start = Math.max(2, currentPage - 1);
+  const end = Math.min(totalPages - 1, currentPage + 1);
+
+  for (let i = start; i <= end; i++) {
+    pages.push(i);
+  }
+
+  if (currentPage < totalPages - 2) {
+    pages.push('ellipsis');
+  }
+
+  pages.push(totalPages);
+
+  return pages;
+}
+---
+
+<nav class="pagination" aria-label="Pagination">
+  {currentPage > 1 && (
+    <a href={pageUrl(currentPage - 1)} class="btn prev" aria-label="Previous page">
+      <ChevronLeft />
+      <span>Previous</span>
+    </a>
+  )}
+
+  <div class="pages">
+    {getPageNumbers().map((page) =>
+      page === 'ellipsis' ? (
+        <span class="ellipsis">&hellip;</span>
+      ) : (
+        <a
+          href={pageUrl(page)}
+          class:list={["page", page === currentPage && "page-active"]}
+          aria-current={page === currentPage ? 'page' : undefined}
+        >
+          {page}
+        </a>
+      )
+    )}
+  </div>
+
+  {currentPage < totalPages && (
+    <a href={pageUrl(currentPage + 1)} class="btn next" aria-label="Next page">
+      <span>Next</span>
+      <ChevronRight />
+    </a>
+  )}
+</nav>
+
+<style>
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md, 1rem);
+  margin-top: var(--space-2xl, 3rem);
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs, 0.5rem);
+  padding: var(--space-sm, 0.5rem) var(--space-md, 1rem);
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-lg, 0.5rem);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-content);
+  text-decoration: none;
+  transition:
+    border-color var(--duration-fast, 150ms) var(--ease-out),
+    background-color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.btn:hover {
+  border-color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));
+}
+
+.btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.pages {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs, 0.25rem);
+}
+
+.page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-lg, 0.5rem);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-content);
+  text-decoration: none;
+  transition:
+    background-color var(--duration-fast, 150ms) var(--ease-out),
+    color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.page:hover {
+  background-color: var(--color-surface-hover);
+}
+
+.page-active {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.page-active:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--color-content-lighter);
+  font-size: var(--text-sm, 0.875rem);
+}
+</style>

@@ -1,0 +1,40 @@
+---
+title: Clean Code Practices Every Developer Should Know
+description: Write readable, maintainable code that your future self will thank you for.
+pubDate: 2025-12-05
+category: Dev
+tags: [cleancode, best-practices, programming]
+author: Triviatas
+---
+
+Clean code is not about perfection — it's about communication. Code is read far more often than it is written.
+
+## Meaningful Names
+
+Choose names that reveal intent. A variable called `d` tells you nothing, but `elapsedTimeInDays` tells you everything.
+
+## Small Functions
+
+Functions should do one thing and do it well. If a function does multiple things, split it.
+
+## Avoid Comments When Possible
+
+Good code is self-documenting. Use comments to explain *why*, not *what*.
+
+## The Boy Scout Rule
+
+Leave the code cleaner than you found it. Small improvements compound over time.
+
+```typescript
+// Instead of this:
+function proc(x: any) { /* 50 lines */ }
+
+// Do this:
+function processUserData(userData: UserData): Result {
+  const validated = validate(userData);
+  const processed = transform(validated);
+  return format(processed);
+}
+```
+
+Clean code is a skill that improves with practice. Start small and be consistent.

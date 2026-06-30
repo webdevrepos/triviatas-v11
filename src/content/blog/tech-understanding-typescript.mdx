@@ -1,0 +1,43 @@
+---
+title: Understanding TypeScript for Better Code
+description: A practical introduction to TypeScript and how it improves your development workflow.
+pubDate: 2025-09-10
+category: Tech
+tags: [typescript, javascript, programming]
+author: Triviatas
+---
+
+TypeScript adds static typing to JavaScript, catching errors at compile time rather than runtime.
+
+## Why TypeScript?
+
+- **Type safety** — catch bugs before they reach production
+- **Better tooling** — autocomplete, refactoring, and documentation
+- **Self-documenting code** — types serve as living documentation
+
+## Basic Types
+
+```typescript
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: 'admin' | 'user';
+}
+
+function greet(user: User): string {
+  return `Hello, ${user.name}!`;
+}
+```
+
+## Generics
+
+Generics create reusable, type-safe components:
+
+```typescript
+function first<T>(arr: T[]): T | undefined {
+  return arr[0];
+}
+```
+
+TypeScript has become an essential tool in modern web development. Its adoption continues to grow across the industry.

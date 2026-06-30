@@ -1,0 +1,118 @@
+---
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Sparkles from '@lucide/astro/icons/sparkles';
+
+interface Props {
+    title?: string;
+    description?: string;
+    ctaText?: string;
+    ctaHref?: string;
+}
+
+const {
+    title = 'Ready to Build Something Great?',
+    description = 'Start building modern, performant web experiences with Astro and PhantomWP.',
+    ctaText = 'Get Started',
+    ctaHref = 'https://docs.astro.build',
+} = Astro.props;
+---
+
+<section class="cta-section">
+    <div class="content">
+        <div class="badge">
+            <Sparkles />
+            <span>Get Started</span>
+        </div>
+        <h2 class="title">{title}</h2>
+        <p class="desc">{description}</p>
+        <a href={ctaHref} target="_blank" rel="noopener noreferrer" class="cta-btn">
+            <span>{ctaText}</span>
+            <ArrowRight />
+        </a>
+    </div>
+</section>
+
+<style>
+.cta-section {
+    padding-block: calc(var(--space-2xl, 3rem) + var(--space-xl, 2rem));
+    background-color: var(--color-surface);
+}
+
+.content {
+    max-width: var(--container-3xl, 48rem);
+    margin-inline: auto;
+    padding-inline: var(--space-md, 1rem);
+    text-align: center;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm, 0.5rem);
+    margin-bottom: var(--space-lg, 1.5rem);
+    padding: var(--space-sm, 0.5rem) var(--space-md, 1rem);
+    border-radius: var(--radius-full, 9999px);
+    background-color: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: var(--font-weight-semibold, 600);
+    color: var(--color-primary);
+}
+
+.badge svg {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+}
+
+.title {
+    margin-bottom: var(--space-lg, 1.5rem);
+    font-size: clamp(var(--text-3xl, 1.875rem), 5vw, var(--text-4xl, 2.25rem));
+    font-weight: var(--font-weight-bold, 700);
+    color: var(--color-content);
+}
+
+.desc {
+    margin-bottom: var(--space-2xl, 3rem);
+    font-size: var(--text-lg, 1.125rem);
+    line-height: var(--leading-relaxed, 1.75);
+    color: var(--color-content-light);
+}
+
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm, 0.5rem);
+    padding: var(--space-md, 1rem) var(--space-xl, 2rem);
+    border-radius: var(--radius-xl, 0.75rem);
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: var(--font-weight-bold, 700);
+    color: var(--color-surface, #ffffff);
+    text-decoration: none;
+    cursor: pointer;
+    background-image: linear-gradient(
+        to bottom right,
+        var(--color-primary),
+        var(--color-primary-dark)
+    );
+    box-shadow: var(--shadow-lg);
+    transition:
+        transform var(--duration-fast, 150ms) var(--ease-out),
+        box-shadow var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.cta-btn:focus-visible {
+    outline: 2px solid var(--color-primary-light);
+    outline-offset: 3px;
+}
+
+.cta-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+</style>

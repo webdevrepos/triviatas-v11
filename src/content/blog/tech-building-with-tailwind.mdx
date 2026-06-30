@@ -1,0 +1,46 @@
+---
+title: Building Beautiful UIs with CSS
+description: Master modern CSS techniques to create stunning, responsive web interfaces.
+pubDate: 2025-11-15
+category: Tech
+tags: [css, design, frontend]
+author: Triviatas
+---
+
+Modern CSS has evolved far beyond simple styling. Today, we have powerful tools at our disposal for creating beautiful, responsive layouts.
+
+## CSS Grid
+
+Grid layouts make complex page structures simple:
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+```
+
+## Custom Properties
+
+CSS custom properties (variables) enable consistent theming:
+
+```css
+:root {
+  --color-primary: #6366f1;
+  --color-surface: #ffffff;
+  --space-md: 1rem;
+}
+```
+
+## Fluid Typography
+
+Use `clamp()` for responsive text sizing:
+
+```css
+h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+```
+
+Modern CSS eliminates the need for pre-processors in most cases. Embrace the platform and write cleaner, more maintainable stylesheets.

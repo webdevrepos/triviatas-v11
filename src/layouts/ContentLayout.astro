@@ -1,0 +1,54 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+
+const { frontmatter = {} } = Astro.props;
+
+// Get values with defaults
+const title = frontmatter.title || 'Untitled Page';
+const description = frontmatter.description || '';
+const image = frontmatter.image;
+
+// Prepare SEO props from frontmatter
+const baseProps = {
+    title,
+    description,
+    image,
+    openGraph: frontmatter.seo?.openGraph ? {
+        title: frontmatter.seo.openGraph.title || title,
+        description: frontmatter.seo.openGraph.description || description,
+        image: frontmatter.seo.openGraph.image || image,
+    } : undefined,
+    twitter: frontmatter.seo?.twitter ? {
+        title: frontmatter.seo.twitter.title || title,
+        description: frontmatter.seo.twitter.description || description,
+        image: frontmatter.seo.twitter.image || image,
+    } : undefined,
+    canonicalUrl: frontmatter.seo?.canonicalUrl,
+    robots: frontmatter.seo?.robots,
+};
+---
+
+<BaseLayout {...baseProps}>
+    <Header />
+    <main id="main-content" class="content-layout">
+        <article class="article">
+            <div class="container">
+                <div class="content prose">
+                    <slot />
+                </div>
+            </div>
+        </article>
+    </main>
+    <Footer />
+</BaseLayout>
+
+<style>
+/* Content Layout */
+.content-layout { background-color: var(--color-surface); }
+.article { padding-block: calc(var(--space-2xl, 3rem) + var(--space-md, 1rem)); }
+.container { max-width: var(--container-7xl, 80rem); margin-inline: auto; padding-inline: clamp(var(--space-md, 1rem), 4vw, var(--space-xl, 2rem)); }
+.content { max-width: var(--container-3xl, 48rem); margin-inline: auto; }
+
+</style>

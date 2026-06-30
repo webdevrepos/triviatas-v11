@@ -1,0 +1,99 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import BlogGrid from '@/components/BlogGrid.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import Pagination from '@/components/Pagination.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  const filtered = allPosts.filter(post => !post.data.draft);
+  const categories = [...new Set(filtered.map(p => p.data.category))];
+
+  const pageSize = 12;
+  const paths: {
+    params: { path: string | undefined };
+    props: {
+      posts: typeof filtered;
+      category: string;
+      currentPage: number;
+      totalPages: number;
+    };
+  }[] = [];
+
+  for (const category of categories) {
+    const catPosts = filtered
+      .filter(p => p.data.category === category)
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+    const totalPages = Math.max(1, Math.ceil(catPosts.length / pageSize));
+
+    for (let i = 0; i < totalPages; i++) {
+      const pageNum = i + 1;
+      const catSlug = category.toLowerCase();
+      paths.push({
+        params: { path: pageNum === 1 ? catSlug : `${catSlug}/${pageNum}` },
+        props: {
+          posts: catPosts.slice(i * pageSize, (i + 1) * pageSize),
+          category,
+          currentPage: pageNum,
+          totalPages,
+        },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { path } = Astro.params;
+const segments = (path || '').split('/');
+const currentCategorySlug = segments[0] || '';
+
+const { posts, category, currentPage, totalPages } = Astro.props;
+const baseUrl = `/category/${currentCategorySlug}`;
+
+const breadcrumbItems = [
+  { label: 'Home', href: '/' },
+  { label: category },
+];
+---
+
+<BaseLayout title={category} description={`Browse all posts in the ${category} category.`}>
+  <Header />
+  <main id="main-content">
+    <div class="container">
+      <Breadcrumbs items={breadcrumbItems} class="cat-breadcrumbs" />
+      <BlogGrid posts={posts} title={category} />
+      {totalPages > 1 && (
+        <div class="pagination-wrap">
+          <Pagination {currentPage} {totalPages} baseUrl={baseUrl} />
+        </div>
+      )}
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+main {
+  background-color: var(--color-surface);
+}
+
+.container {
+  max-width: var(--container-7xl, 80rem);
+  margin-inline: auto;
+  padding-inline: clamp(var(--space-md, 1rem), 4vw, var(--space-xl, 2rem));
+}
+
+.cat-breadcrumbs {
+  padding-top: calc(var(--space-xl, 2rem) + var(--space-md, 1rem));
+  margin-bottom: 0;
+}
+
+.pagination-wrap {
+  padding-bottom: calc(var(--space-2xl, 3rem) + var(--space-xl, 2rem));
+}
+</style>

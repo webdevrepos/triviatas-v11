@@ -1,0 +1,39 @@
+---
+title: Web Performance Optimization Guide
+description: Practical tips and techniques to make your website faster and more performant.
+pubDate: 2025-10-20
+category: Tech
+tags: [performance, optimization, webdev]
+author: Triviatas
+---
+
+Performance is critical for user experience and SEO. Here's a comprehensive guide to optimizing your website.
+
+## Core Web Vitals
+
+Google's Core Web Vitals measure three key metrics:
+
+1. **LCP** (Largest Contentful Paint) — loading performance
+2. **FID** (First Input Delay) — interactivity
+3. **CLS** (Cumulative Layout Shift) — visual stability
+
+## Image Optimization
+
+Images are often the biggest performance bottleneck:
+
+- Use modern formats like WebP and AVIF
+- Implement lazy loading
+- Serve responsive images with srcset
+- Use appropriate compression levels
+
+## Code Splitting
+
+Split your JavaScript into smaller chunks and load only what's needed:
+
+```js
+const HeavyComponent = await import('./Heavy.astro');
+```
+
+## Caching Strategies
+
+Leverage browser caching for static assets and use CDN edge caching for dynamic content. A well-optimized site can achieve 95+ Lighthouse scores with the right techniques.

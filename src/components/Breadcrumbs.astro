@@ -1,0 +1,79 @@
+---
+import ChevronRight from '@lucide/astro/icons/chevron-right';
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class:list={["breadcrumbs", className]}>
+  <ol>
+    {items.map((item, i) => (
+      <li>
+        {item.href ? (
+          <>
+            <a href={item.href}>{item.label}</a>
+            <ChevronRight class="sep" aria-hidden="true" />
+          </>
+        ) : (
+          <span aria-current="page">{item.label}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+.breadcrumbs {
+  margin-bottom: var(--space-lg, 1.5rem);
+}
+
+.breadcrumbs ol {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-xs, 0.25rem);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs, 0.25rem);
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--color-content-lighter);
+}
+
+.breadcrumbs a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.breadcrumbs a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.breadcrumbs span[aria-current="page"] {
+  color: var(--color-content);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.sep {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-content-lighter);
+  flex-shrink: 0;
+}
+</style>

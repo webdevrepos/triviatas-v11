@@ -1,0 +1,66 @@
+---
+interface Props {
+  title: string;
+  category: string;
+  class?: string;
+}
+
+const { title, category, class: className } = Astro.props;
+
+interface CatColors {
+  start: string;
+  end: string;
+}
+
+const catColors: Record<string, CatColors> = {
+  Tech: { start: '#6366f1', end: '#3730a3' },
+  Life: { start: '#14b8a6', end: '#115e59' },
+  Dev: { start: '#8b5cf6', end: '#5b21b6' },
+};
+
+const defaultColors: CatColors = { start: '#6366f1', end: '#3730a3' };
+const colors = catColors[category] || defaultColors;
+const initial = title.charAt(0).toUpperCase();
+const uid = `ph-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div class:list={["wrapper", className]}>
+  <svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id={`${uid}-bg`} x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color={colors.start} />
+        <stop offset="100%" stop-color={colors.end} />
+      </linearGradient>
+      <pattern id={`${uid}-dots`} x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+        <circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.08)" />
+      </pattern>
+    </defs>
+    <rect width="1200" height="630" fill={`url(#${uid}-bg)`} />
+    <rect width="1200" height="630" fill={`url(#${uid}-dots)`} />
+    <text
+      x="600"
+      y="340"
+      text-anchor="middle"
+      dominant-baseline="central"
+      fill="rgba(255,255,255,0.12)"
+      font-family="system-ui, sans-serif"
+      font-size="320"
+      font-weight="800"
+      letter-spacing="-8"
+    >
+      {initial}
+    </text>
+  </svg>
+</div>
+
+<style>
+.wrapper {
+  line-height: 0;
+}
+
+.wrapper svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+</style>

@@ -1,0 +1,69 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BlogCard from './BlogCard.astro';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  title?: string;
+}
+
+const { posts, title } = Astro.props;
+---
+
+<section class="grid-section">
+  <div class="container">
+    {title && <h1 class="page-title">{title}</h1>}
+    {posts.length > 0 ? (
+      <div class="grid">
+        {posts.map(post => <BlogCard post={post} />)}
+      </div>
+    ) : (
+      <p class="empty">No posts found.</p>
+    )}
+  </div>
+</section>
+
+<style>
+.grid-section {
+  padding-block: calc(var(--space-2xl, 3rem) + var(--space-xl, 2rem));
+}
+
+.container {
+  max-width: var(--container-7xl, 80rem);
+  margin-inline: auto;
+  padding-inline: clamp(var(--space-md, 1rem), 4vw, var(--space-xl, 2rem));
+}
+
+.page-title {
+  margin-bottom: var(--space-2xl, 3rem);
+  font-size: clamp(var(--text-3xl, 1.875rem), 5vw, var(--text-4xl, 2.25rem));
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-content);
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg, 1.5rem);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.empty {
+  text-align: center;
+  color: var(--color-content-lighter);
+  font-size: var(--text-lg, 1.125rem);
+  padding: var(--space-2xl, 3rem) 0;
+}
+</style>

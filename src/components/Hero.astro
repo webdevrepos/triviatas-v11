@@ -1,0 +1,320 @@
+---
+import Star from '@lucide/astro/icons/star';
+import Zap from '@lucide/astro/icons/zap';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import ArrowDown from '@lucide/astro/icons/arrow-down';
+import Palette from '@lucide/astro/icons/palette';
+import Cloud from '@lucide/astro/icons/cloud';
+
+/**
+ * Hero Component
+ * A customizable hero section with theme-aware content, CTAs, and optional stats.
+ */
+
+interface Props {
+    title?: string;
+    subtitle?: string;
+    badgeText?: string;
+    ctaText?: string;
+    ctaHref?: string;
+    showStats?: boolean;
+}
+
+const {
+    title = '<span class="title-highlight">Build Amazing</span><br /><span>Web Experiences</span>',
+    subtitle = 'Your lightning-fast Astro site is ready. Start creating beautiful, performant web applications with modern tools.',
+    badgeText = 'Powered by Astro',
+    ctaText = 'Get Started',
+    ctaHref = 'https://docs.astro.build',
+    showStats = true
+} = Astro.props;
+---
+
+<section class="hero">
+    <div class="content">
+        <div>
+            {badgeText && (
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    <span class="badge-text">{badgeText}</span>
+                    <Star />
+                </div>
+            )}
+
+            <h1 class="title" set:html={title} />
+
+            <p class="subtitle">
+                {subtitle}
+            </p>
+
+            <div class="cta-group">
+                <a
+                    href={ctaHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="cta-primary"
+                >
+                    <Zap />
+                    <span>{ctaText}</span>
+                    <ArrowRight />
+                </a>
+                <a
+                    href="#features"
+                    class="cta-secondary"
+                >
+                    <span>Learn More</span>
+                    <ArrowDown />
+                </a>
+                <slot name="secondary-cta" />
+            </div>
+
+            {showStats && (
+                <div class="stats">
+                    <div>
+                        <div class="stat">
+                            <div class="stat-icon">
+                                <Zap />
+                            </div>
+                            <h3 class="stat-title">Lightning Fast</h3>
+                            <p class="stat-desc">Zero JS by default</p>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-icon">
+                                <Palette />
+                            </div>
+                            <h3 class="stat-title">Beautiful Design</h3>
+                            <p class="stat-desc">Modern CSS powered</p>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-icon">
+                                <Cloud />
+                            </div>
+                            <h3 class="stat-title">Deploy Anywhere</h3>
+                            <p class="stat-desc">Edge-ready hosting</p>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            <slot />
+        </div>
+    </div>
+</section>
+
+<style>
+.hero {
+    position: relative;
+    min-height: 80vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background-image: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--color-primary) 6%, var(--color-surface)),
+        var(--color-surface)
+    );
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(color-mix(in srgb, var(--color-primary) 12%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 12%, transparent) 1px, transparent 1px);
+    background-size: var(--space-2xl, 3rem) var(--space-2xl, 3rem);
+    mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.65), transparent 85%);
+    opacity: 0.6;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    max-width: var(--container-7xl, 80rem);
+    margin-inline: auto;
+    padding: calc(var(--space-2xl, 3rem) + var(--space-xl, 2rem)) var(--space-md, 1rem);
+}
+
+.content > div {
+    max-width: var(--container-prose, 56rem);
+    margin-inline: auto;
+    text-align: center;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm, 0.5rem);
+    padding: var(--space-sm, 0.5rem) var(--space-md, 1rem);
+    margin-bottom: var(--space-lg, 1.5rem);
+    border-radius: var(--radius-full, 9999px);
+    border: 1px solid var(--color-outline);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+}
+
+.badge-dot {
+    display: inline-block;
+    width: var(--space-sm, 0.5rem);
+    height: var(--space-sm, 0.5rem);
+    border-radius: var(--radius-full, 9999px);
+    background-color: var(--color-primary);
+}
+
+.badge-text {
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: var(--font-weight-semibold, 600);
+    color: var(--color-content);
+}
+
+.badge svg {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    fill: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.title {
+    margin-bottom: var(--space-xl, 2rem);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: var(--font-weight-bold, 700);
+    line-height: var(--leading-tight, 1.1);
+    color: var(--color-content);
+}
+
+.title-highlight {
+    background-image: linear-gradient(
+        to right,
+        var(--color-primary),
+        var(--color-primary-dark)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.subtitle {
+    max-width: var(--container-3xl, 48rem);
+    margin: 0 auto var(--space-2xl, 3rem);
+    font-size: clamp(var(--text-lg, 1.125rem), 2.5vw, var(--text-2xl, 1.5rem));
+    line-height: var(--leading-relaxed, 1.75);
+    color: var(--color-content-light);
+}
+
+.cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md, 1rem);
+}
+
+.cta-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm, 0.5rem);
+    padding: var(--space-md, 1rem) var(--space-xl, 2rem);
+    border-radius: var(--radius-xl, 0.75rem);
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: var(--font-weight-bold, 700);
+    color: var(--color-surface, #ffffff);
+    text-decoration: none;
+    cursor: pointer;
+    background-image: linear-gradient(
+        to bottom right,
+        var(--color-primary),
+        var(--color-primary-dark)
+    );
+    box-shadow: var(--shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1));
+    transition:
+        transform var(--duration-fast, 150ms) var(--ease-out, cubic-bezier(0, 0, 0.2, 1)),
+        box-shadow var(--duration-fast, 150ms) var(--ease-out, cubic-bezier(0, 0, 0.2, 1));
+}
+
+.cta-primary:hover {
+    transform: translateY(-2px);
+}
+
+.cta-primary:focus-visible {
+    outline: 2px solid var(--color-primary-light);
+    outline-offset: 3px;
+}
+
+.cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm, 0.5rem);
+    padding: var(--space-md, 1rem) var(--space-xl, 2rem);
+    border-radius: var(--radius-xl, 0.75rem);
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: var(--font-weight-semibold, 600);
+    color: var(--color-content);
+    text-decoration: none;
+    cursor: pointer;
+    background-color: var(--color-surface);
+    border: 2px solid var(--color-outline);
+    transition:
+        border-color var(--duration-fast, 150ms) var(--ease-out, cubic-bezier(0, 0, 0.2, 1)),
+        background-color var(--duration-fast, 150ms) var(--ease-out, cubic-bezier(0, 0, 0.2, 1));
+}
+
+.cta-secondary:hover {
+    border-color: var(--color-primary);
+    background-color: var(--color-surface-alt);
+}
+
+.cta-secondary:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.stats {
+    margin-top: calc(var(--space-2xl, 3rem) + var(--space-xl, 2rem));
+    padding-top: var(--space-2xl, 3rem);
+    border-top: 1px solid var(--color-outline);
+}
+
+.stats > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: var(--space-lg, 1.5rem);
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: var(--space-sm, 0.5rem);
+    border-radius: var(--radius-xl, 0.75rem);
+    background-color: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+}
+
+.stat-icon svg {
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-primary);
+}
+
+.stat-title {
+    margin-bottom: var(--space-xs, 0.25rem);
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: var(--font-weight-bold, 700);
+    color: var(--color-content);
+}
+
+.stat-desc {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--color-content-light);
+}
+</style>

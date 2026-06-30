@@ -1,0 +1,46 @@
+---
+title: API Design Principles for Developers
+description: Design APIs that are intuitive, consistent, and a joy to work with.
+pubDate: 2025-09-25
+category: Dev
+tags: [api, design, backend]
+author: Triviatas
+---
+
+A well-designed API is intuitive to use and hard to misuse. Here are the principles I follow.
+
+## Consistency
+
+Use consistent naming, error formats, and response structures throughout your API. Predictability reduces cognitive load.
+
+## RESTful Conventions
+
+```
+GET    /users        — list users
+POST   /users        — create user
+GET    /users/:id    — get user
+PUT    /users/:id    — update user
+DELETE /users/:id    — delete user
+```
+
+## Error Handling
+
+Return meaningful error messages with appropriate HTTP status codes:
+
+```json
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Email address is invalid",
+    "details": { "field": "email" }
+  }
+}
+```
+
+## Versioning
+
+Version your API from day one. Use URL-based versioning (`/v1/users`) or header-based versioning.
+
+## Documentation
+
+Good APIs are documented APIs. Use OpenAPI/Swagger specifications and keep them up to date.
