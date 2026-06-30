@@ -7,6 +7,15 @@ import Feather from '@lucide/astro/icons/feather';
 import { getAllPosts } from '@phantomwp/wordpress';
 
 const allPosts = await getAllPosts();
+
+let siteTitle = 'Triviatas Blog';
+let siteSubtitle = 'Technologie- und Lifestyle-News';
+try {
+  const res = await fetch('https://panel.triviatas.de/wp-json/custom/v1/site-options');
+  const data = await res.json();
+  if (data?.homepage_text_1) siteTitle = data.homepage_text_1;
+  if (data?.homepage_text_2) siteSubtitle = data.homepage_text_2;
+} catch {}
 ---
 
 <BaseLayout title="Home">
@@ -17,8 +26,8 @@ const allPosts = await getAllPosts();
         <div class="hero-icon-wrap">
           <Feather class="hero-icon" />
         </div>
-        <h1 class="hero-title">Triviatas Blog</h1>
-        <p class="hero-subtitle">Technologie- und Lifestyle-News</p>
+        <h1 class="hero-title">{siteTitle}</h1>
+        <p class="hero-subtitle">{siteSubtitle}</p>
       </div>
     </section>
     <BlogGrid posts={allPosts} />
