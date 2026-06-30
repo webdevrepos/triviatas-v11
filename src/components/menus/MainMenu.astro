@@ -1,12 +1,16 @@
 ---
 import { getNavigationPages, isActivePath } from '../../lib/navigation';
-import { getCollection } from 'astro:content';
+import { getCategories, getPages } from '@phantomwp/wordpress';
+
+function decodeEntities(text: string): string {
+  return text.replace(/&#(\d+);/g, (_, c) => String.fromCharCode(parseInt(c, 10)));
+}
 
 const currentPath = Astro.url.pathname;
 const discoveredPages = await getNavigationPages();
-
-const allPosts = await getCollection('blog');
-const categories = [...new Set(allPosts.map(p => p.data.category))].sort();
+const wpCategories = await getCategories();
+const displayCategories = wpCategories.filter(c => c.name !== 'Uncategorized' && c.count > 0);
+const wpPages = (await getPages({ perPage: 50 })).filter(p => p.status === 'publish');
 
 const menuItems = [
     { id: 'home', type: 'home', label: 'Home', url: '/' },
@@ -30,17 +34,22 @@ const menuItems = [
             {item.label}
         </a>
     ))}
-    {categories.map((cat) => {
-        const catSlug = cat.toLowerCase();
-        return (
-            <a
-                href={`/category/${catSlug}`}
-                class:list={["nav-link", isActivePath(currentPath, `/category/${catSlug}`) && "active"]}
-            >
-                {cat}
-            </a>
-        );
-    })}
+    {displayCategories.map((cat) => (
+        <a
+            href={`/category/${cat.slug}`}
+            class:list={["nav-link", isActivePath(currentPath, `/category/${cat.slug}`) && "active"]}
+        >
+            {cat.name}
+        </a>
+    ))}
+    {wpPages.map((page) => (
+        <a
+            href={`/${page.slug}`}
+            class:list={["nav-link", isActivePath(currentPath, `/${page.slug}`, true) && "active"]}
+        >
+            {decodeEntities(page.title?.rendered || page.slug)}
+        </a>
+    ))}
 </nav>
 
 <button type="button" class="menu-toggle" aria-label="Toggle menu" id="main-menu-toggle">
@@ -74,17 +83,22 @@ const menuItems = [
                     {item.label}
                 </a>
             ))}
-            {categories.map((cat) => {
-                const catSlug = cat.toLowerCase();
-                return (
-                    <a
-                        href={`/category/${catSlug}`}
-                        class:list={["mobile-link", isActivePath(currentPath, `/category/${catSlug}`) && "active"]}
-                    >
-                        {cat}
-                    </a>
-                );
-            })}
+            {displayCategories.map((cat) => (
+                <a
+                    href={`/category/${cat.slug}`}
+                    class:list={["mobile-link", isActivePath(currentPath, `/category/${cat.slug}`) && "active"]}
+                >
+                    {cat.name}
+                </a>
+            ))}
+            {wpPages.map((page) => (
+                <a
+                    href={`/${page.slug}`}
+                    class:list={["mobile-link", isActivePath(currentPath, `/${page.slug}`, true) && "active"]}
+                >
+                    {decodeEntities(page.title?.rendered || page.slug)}
+                </a>
+            ))}
         </div>
     </nav>
 </div>

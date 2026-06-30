@@ -2,46 +2,36 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import PostPlaceholder from '@/components/PostPlaceholder.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import BlogCard from '@/components/BlogCard.astro';
-import { getCollection, render } from 'astro:content';
+import { getPost, getPosts, getPostCategories, getAuthor, rewriteContentUrls, formatDate } from '@phantomwp/wordpress';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  const paths = [];
-
-  for (const post of posts) {
-    const { Content } = await render(post);
-    paths.push({
-      params: { slug: post.id },
-      props: { Content, data: post.data, slug: post.id },
-    });
-  }
-
-  return paths;
+  const allPosts = await getPosts({ perPage: 100 });
+  return allPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
 
-interface PostData {
-  title: string;
-  description: string;
-  pubDate: Date;
-  category: string;
-  author: string;
-}
+const { post } = Astro.props as { post: NonNullable<Awaited<ReturnType<typeof getPost>>> };
+const title = post.title?.rendered || '';
+const content = rewriteContentUrls(post.content?.rendered || '');
+const description = (post.excerpt?.rendered || '').replace(/<[^>]+>/g, '').trim();
+const date = formatDate(post.date);
+const categories = getPostCategories(post);
+const category = categories[0]?.name || 'Uncategorized';
+const categorySlug = categories[0]?.slug || '';
+const author = getAuthor(post)?.name || 'Triviatas';
 
-const { Content, data, slug } = Astro.props;
-const { title, description, pubDate, category, author } = data as unknown as PostData;
-
-const allPosts = await getCollection('blog');
-const relatedPosts = allPosts
-  .filter(p => p.data.category === category && p.id !== slug && !p.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+const categoryId = categories[0]?.id;
+const relatedPosts = categoryId
+  ? (await getPosts({ categories: [categoryId], perPage: 3 })).filter(p => p.id !== post.id).slice(0, 3)
+  : [];
 
 const breadcrumbItems = [
   { label: 'Home', href: '/' },
-  { label: category, href: `/category/${category.toLowerCase()}` },
+  ...(categorySlug ? [{ label: category, href: `/category/${categorySlug}` }] : []),
   { label: title },
 ];
 ---
@@ -50,27 +40,21 @@ const breadcrumbItems = [
   <Header />
   <main id="main-content" class="post-page">
     <article class="post">
-      <PostPlaceholder title={title} category={category} class="post-image" />
       <div class="container">
         <Breadcrumbs items={breadcrumbItems} />
         <header class="post-header">
           <div class="meta">
-            <a href={`/category/${category.toLowerCase()}`} class="category">{category}</a>
-            <time class="date" datetime={pubDate instanceof Date ? pubDate.toISOString() : String(pubDate)}>
-              {pubDate instanceof Date
-                ? pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-                : String(pubDate)}
-            </time>
+            {categorySlug && (
+              <a href={`/category/${categorySlug}`} class="category">{category}</a>
+            )}
+            <time class="date" datetime={post.date}>{date}</time>
           </div>
-          <h1 class="title">{title}</h1>
-          <p class="desc">{description}</p>
+          <h1 class="title" set:html={title} />
           <div class="author-line">
             By <span class="author">{author}</span>
           </div>
         </header>
-        <div class="content prose">
-          <Content />
-        </div>
+        <div class="content prose" set:html={content} />
       </div>
 
       {relatedPosts.length > 0 && (
@@ -78,7 +62,7 @@ const breadcrumbItems = [
           <div class="container">
             <h2 class="related-heading">Related Posts</h2>
             <div class="related-grid">
-              {relatedPosts.map(post => <BlogCard post={post} />)}
+              {relatedPosts.map(p => <BlogCard post={p} />)}
             </div>
           </div>
         </section>
@@ -97,17 +81,11 @@ const breadcrumbItems = [
   padding-block: 0 0;
 }
 
-.post-image {
-  width: 100%;
-  aspect-ratio: 1200 / 420;
-  overflow: hidden;
-}
-
 .container {
   max-width: var(--container-3xl, 48rem);
   margin-inline: auto;
   padding-inline: clamp(var(--space-md, 1rem), 4vw, var(--space-xl, 2rem));
-  padding-top: var(--space-2xl, 3rem);
+  padding-top: calc(var(--space-2xl, 3rem) + var(--space-xl, 2rem));
   padding-bottom: calc(var(--space-2xl, 3rem) + var(--space-xl, 2rem));
 }
 
@@ -152,13 +130,6 @@ const breadcrumbItems = [
   font-weight: var(--font-weight-bold, 700);
   line-height: var(--leading-tight, 1.2);
   color: var(--color-content);
-}
-
-.desc {
-  font-size: var(--text-lg, 1.125rem);
-  line-height: var(--leading-relaxed, 1.65);
-  color: var(--color-content-light);
-  margin-bottom: var(--space-md, 1rem);
 }
 
 .author-line {

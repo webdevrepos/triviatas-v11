@@ -1,26 +1,46 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import PostPlaceholder from './PostPlaceholder.astro';
+import type { WPPost } from '@phantomwp/wordpress';
+import { getPostCategories, getAuthor, stripHtml, formatDate } from '@phantomwp/wordpress';
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: WPPost;
+}
+
+function decodeEntities(text: string): string {
+  const map: Record<string, string> = {
+    '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"',
+    '&#x27;': "'", '&#x2F;': '/', '&nbsp;': '\u00A0',
+    '&hellip;': '\u2026', '&ndash;': '\u2013', '&mdash;': '\u2014',
+    '&shy;': '\u00AD', '&copy;': '\u00A9', '&reg;': '\u00AE',
+    '&euro;': '\u20AC', '&pound;': '\u00A3', '&sect;': '\u00A7',
+  };
+  let result = text.replace(/&#(\d+);/g, (_, c) => String.fromCharCode(parseInt(c, 10)));
+  for (const [entity, char] of Object.entries(map)) {
+    result = result.split(entity).join(char);
+  }
+  return result;
 }
 
 const { post } = Astro.props;
-const { title, description, pubDate, category, author } = post.data;
+const title = post.title?.rendered || '';
+const description = decodeEntities(stripHtml(post.excerpt?.rendered || '').trim());
+const date = formatDate(post.date);
+const categories = getPostCategories(post);
+const category = categories[0]?.name || 'Uncategorized';
+const author = getAuthor(post)?.name || 'Triviatas';
+const postSlug = post.slug;
 ---
 
 <article class="card">
-  <a href={`/blog/${post.id}`} class="link">
-    <PostPlaceholder title={title} category={category} class="placeholder" />
+  <a href={`/blog/${postSlug}`} class="link">
     <div class="body">
       <div class="meta">
-        <span class="category">{category}</span>
-        <time class="date" datetime={pubDate.toISOString()}>
-          {pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-        </time>
+        {categories.length > 0 && (
+          <span class="category">{category}</span>
+        )}
+        <time class="date" datetime={post.date}>{date}</time>
       </div>
-      <h2 class="title">{title}</h2>
+      <h2 class="title" set:html={title} />
       <p class="desc">{description}</p>
       <div class="footer-meta">
         <span class="author">{author}</span>
@@ -31,24 +51,26 @@ const { title, description, pubDate, category, author } = post.data;
 
 <style>
 .card {
+  position: relative;
   border: 1px solid var(--color-outline);
   border-radius: var(--radius-xl, 0.75rem);
   background-color: var(--color-surface);
-  overflow: hidden;
   transition:
     transform var(--duration-fast, 150ms) var(--ease-out),
     box-shadow var(--duration-fast, 150ms) var(--ease-out);
 }
 
+.card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(to right, var(--color-primary), var(--color-primary-dark));
+  border-radius: var(--radius-xl, 0.75rem) var(--radius-xl, 0.75rem) 0 0;
+}
+
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-}
-
-.placeholder {
-  border-radius: var(--radius-xl, 0.75rem) var(--radius-xl, 0.75rem) 0 0;
-  overflow: hidden;
-  aspect-ratio: 1200 / 630;
 }
 
 .link {
@@ -107,6 +129,10 @@ const { title, description, pubDate, category, author } = post.data;
   line-height: var(--leading-relaxed, 1.65);
   color: var(--color-content-light);
   flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .footer-meta {

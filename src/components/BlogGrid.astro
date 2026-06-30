@@ -1,9 +1,9 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import BlogCard from './BlogCard.astro';
+import type { WPPost } from '@phantomwp/wordpress';
 
 interface Props {
-  posts: CollectionEntry<'blog'>[];
+  posts: WPPost[];
   title?: string;
 }
 

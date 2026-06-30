@@ -4,12 +4,9 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import BlogGrid from '@/components/BlogGrid.astro';
 import Feather from '@lucide/astro/icons/feather';
-import { getCollection } from 'astro:content';
+import { getAllPosts } from '@phantomwp/wordpress';
 
-const allPosts = await getCollection('blog');
-const sortedPosts = allPosts
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const allPosts = await getAllPosts();
 ---
 
 <BaseLayout title="Home">
@@ -24,7 +21,7 @@ const sortedPosts = allPosts
         <p class="hero-subtitle">Technologie- und Lifestyle-News</p>
       </div>
     </section>
-    <BlogGrid posts={sortedPosts} />
+    <BlogGrid posts={allPosts} />
   </main>
   <Footer />
 </BaseLayout>
