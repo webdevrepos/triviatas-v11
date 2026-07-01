@@ -32,7 +32,7 @@ const RESPONSIVE_WIDTHS = [320, 640, 960, 1200];
 
 // Read WordPress URL and access secret from the wordpress.ts file
 function getWordPressConfig() {
-  const wpFilePath = path.join(ROOT, 'src/lib/wordpress.ts');
+  const wpFilePath = path.join(ROOT, 'src/lib/wordpress-config.ts');
   
   if (!fs.existsSync(wpFilePath)) {
     console.log('[sync-media] No WordPress client found, skipping...');

@@ -1,1 +1,177 @@
-{}
+{
+  "12.webp": {
+    "base64": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAABwBACdASoUABUAPzmMuVavKSUjqA1R4CcJaQAALnfNsktlCPgRfoW+3na0MAD+1OSwRk1JHkXPcJy16rMh58C4WBreHhDflbP84cyPKaNPMK5HBKZwTQc4BEI2ylwdgZmtAqWaXF8qV60/TAEzdDi0aO5+uOr6Vw9+H8gAAAA=",
+    "width": 380,
+    "height": 397
+  },
+  "14.webp": {
+    "base64": "data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAAAwBQCdASoUACcAPzmQu1avKiWkqrgMAeAnCWknAAAJbEzW3qf+8EYXzSMrQInkBcGcAAD+56F1mkHe16zXDl/1WMM0t69OazzHQxN40JNYQ2oPejnwg7tKJSu3HGaV1ZW4RmQnOx/mETXB6hT+4/DKLw+ZZgcmfyp0/5//iw4Vk+st913ClDbWajrlU2INOjMAAA==",
+    "width": 380,
+    "height": 732
+  },
+  "15.webp": {
+    "base64": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADwAwCdASoUAAwAPzmGuVOvKSWisAgB4CcJaQAAXls+xK46mvhIxz8AAP7G4gS6PwyLYDn6dDSTiHizloB/46CacFzedWEPLcE0r0i9J8BtgstokL4gAA==",
+    "width": 640,
+    "height": 372
+  },
+  "16.webp": {
+    "base64": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAADQBACdASoUABEAPzmQulgvKaUjqAqp4CcJaQAIEAH4fyoyAZffwu3VQ+lrTYxcAAD+tB9styiEf4fgFIZW10gAi0Jpc/Utru4sRMtE/FfRj1jFWDUXkmT634SbpIRlSQoGIl7K3gx4Qc/6Gkj/KSYlt+GWGynjAAAAAA==",
+    "width": 580,
+    "height": 495
+  },
+  "17.webp": {
+    "base64": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAACQAwCdASoUAAkAPzmEuVOvKKWisAgB4CcJaQAAUl6Iji+z37AAAP7HXopPkJXqVDAcC+ts3hD2EBVuSi2AIZtJMi+jSWhYAAA=",
+    "width": 420,
+    "height": 186
+  },
+  "18.webp": {
+    "base64": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAABwAwCdASoUAAwAPzmGuVOvKSWisAgB4CcJaQAAXgvJ/qkeyyAA/sRfevIsKOmrn9lJ9dBg8LpihXf7bB4G0Xm3hKc4slEpgAA=",
+    "width": 640,
+    "height": 375
+  },
+  "impressum-triviatas.webp": {
+    "base64": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAABQAwCdASoUAAwAPzmGuVOvKSWisAgB4CcJaQAAXAY8FB3/sAD+3yHkpaYOZwR/4wuGYAAA",
+    "width": 390,
+    "height": 236
+  },
+  "kauf-mich.webp": {
+    "base64": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAABQAwCdASoUAAUAPzmGuVOvKSWisAgB4CcJaQAAW510p2JqAAD+0wo4A8AjdQAAAAA=",
+    "width": 645,
+    "height": 153
+  },
+  "neutrales-ergebnis-new-economy-und-nyse.webp": {
+    "base64": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAQBACdASoUAA0APzmGuVOvKSWisAgB4CcJaACdLwABsIQpybQevCh+QAD3TU1eA3VGzjRM4jja4R4gVpxZRHfMnnrCKzNTSwwIJHMO/B9mD6AA",
+    "width": 420,
+    "height": 281
+  },
+  "nichtraucherschutz-niederlassungsfreiheit-niederstwertprinzip-und-nie_brauch.webp": {
+    "base64": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQBACdASoUAA0APzmEuVOvKKWisAgB4CcJQBOgBHrteYXjAoiScXyEAAD+4JrptW9+umzL6dsrjFwsyGfzx8Ger5LRTz5cecENmuVVSuJ38VaJS3PeFiv2ipPT5SVuItD3F/iqmxkAAA==",
+    "width": 420,
+    "height": 280
+  },
+  "nichtraucherschutz-niederlassungsfreiheit-niederstwertprinzip-und-nie_c3_9fbrauch.webp": {
+    "base64": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQBACdASoUAA0APzmEuVOvKKWisAgB4CcJQBOgBHrteYXjAoiScXyEAAD+4JrptW9+umzL6dsrjFwsyGfzx8Ger5LRTz5cecENmuVVSuJ38VaJS3PeFiv2ipPT5SVuItD3F/iqmxkAAA==",
+    "width": 420,
+    "height": 280
+  },
+  "nikkei-index-nobelpreis-f_c3_bcr-wirtschaftswissenschaften-nominalwert-nonvaleur.webp": {
+    "base64": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADQAwCdASoUAA0APzmGuVOvKKWisAgB4CcJbACdABAcpwFzxziY8wAA/hf963GBqPo85E/4kwb1UseCIVcQl5n3kToLvBQLTjtSluMHVKjowlhvhtsoGZJQdLq8KWv5PVkz6MAA",
+    "width": 420,
+    "height": 281
+  },
+  "nikkei-index-nobelpreis-f_r-wirtschaftswissenschaften-nominalwert-nonvaleur.webp": {
+    "base64": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADQAwCdASoUAA0APzmGuVOvKKWisAgB4CcJbACdABAcpwFzxziY8wAA/hf963GBqPo85E/4kwb1UseCIVcQl5n3kToLvBQLTjtSluMHVKjowlhvhtsoGZJQdLq8KWv5PVkz6MAA",
+    "width": 420,
+    "height": 281
+  },
+  "normung-nummernkonto-nutzen-grafik-nutzungsdauer-obligation.webp": {
+    "base64": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAACQAwCdASoUAA0APzmGulOvKKWisAgB4CcJZQDE2BMAFF/JGObcAP5UZ6SSFr9tDT27TDjPwCAKt/dtgq9u6ItcaUlRsSAUENtkZHAa/LnXi9PAnykJkNWQ94AZRC8conj4aAAA",
+    "width": 420,
+    "height": 287
+  },
+  "offenmarktpolitik-_c3_b6ffentliche-auftragsvergabe-und-ohg.webp": {
+    "base64": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACwAwCdASoUAA0APzmGuVOvKSWisAgB4CcJZgCsACPM4svS++6NAADxrWd+matlDIbWbcJ5DjIO9GR/XnQHntPEaPTvgcowNEzd1grSur9QlZjRbIcTOg1asCRoAAAA",
+    "width": 420,
+    "height": 281
+  },
+  "offenmarktpolitik-_ffentliche-auftragsvergabe-und-ohg.webp": {
+    "base64": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACwAwCdASoUAA0APzmGuVOvKSWisAgB4CcJZgCsACPM4svS++6NAADxrWd+matlDIbWbcJ5DjIO9GR/XnQHntPEaPTvgcowNEzd1grSur9QlZjRbIcTOg1asCRoAAAA",
+    "width": 420,
+    "height": 281
+  },
+  "old-economy-_c3_96kosteuer-und-opec-wichtige-wirtschaftsbegriffe-liste.webp": {
+    "base64": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAABwAwCdASoUAA0APzmEuVOvKKWisAgB4CcJZwAAifMn3c6ZlQAA/uslFBM6S8pOJPQ2BIWkkre63zd4fuJh2FB8UINJIT8wvHc2aAAA",
+    "width": 420,
+    "height": 280
+  },
+  "old-economy-_kosteuer-und-opec-wichtige-wirtschaftsbegriffe-liste.webp": {
+    "base64": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAABwAwCdASoUAA0APzmEuVOvKKWisAgB4CcJZwAAifMn3c6ZlQAA/uslFBM6S8pOJPQ2BIWkkre63zd4fuJh2FB8UINJIT8wvHc2aAAA",
+    "width": 420,
+    "height": 280
+  },
+  "opportunit_c3_a4tskosten-optimale-bestellmenge-optimale-losgr_c3_b6_c3_9fe-or-option-optionsanleihe-optionsschein.webp": {
+    "base64": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADwAwCdASoUAA0APzmGulOvKKWisAgB4CcJYgCsABtmdDtaJ8KvjgMAAMq4OvKqZlVTb4Qa5PYdx83ieDSnySHhnN4YwqZyUFEoLvqvCBaU5x95LJSOxdTBxJSimrTIcAA=",
+    "width": 420,
+    "height": 272
+  },
+  "opportunit_tskosten-optimale-bestellmenge-optimale-losgr__e-or-option-optionsanleihe-optionsschein.webp": {
+    "base64": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADwAwCdASoUAA0APzmGulOvKKWisAgB4CcJYgCsABtmdDtaJ8KvjgMAAMq4OvKqZlVTb4Qa5PYdx83ieDSnySHhnN4YwqZyUFEoLvqvCBaU5x95LJSOxdTBxJSimrTIcAA=",
+    "width": 420,
+    "height": 272
+  },
+  "orderklausel-orderpapier-ordnungspolitik-ordoliberalismus-organgesellschaft-organisation.webp": {
+    "base64": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAwCdASoUAAsAPzmEuVOvKKWisAgB4CcJZQDG9BumQNK2AQbSFwAA/PDGIzRpj6XV0rBjlzpiNGAWyilQQpqrLT0ypdMeqjf9uhNQT+GWQ34zl0jaDAAA",
+    "width": 420,
+    "height": 232
+  },
+  "pachtvertrag-pareto-optimum-parit_c3_a4t-parketthandel-und-passiva-wirtschaftsbegriffe-_c3_9cbersicht.webp": {
+    "base64": "data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADQAwCdASoUAA0APzmGuVOvKSWisAgB4CcJaACdMoABgvTLsmb7G/4A+ozpmPRiRhTJOl7B5EfDIj/cuCuQ5/70UDZM1TrbWk3T5Dgc7sv9gVPgah6fdsgzXXyG4JvEyrijlQbNiuk5rkh2GdQE6PHfJdBDg2aOL+nhaAAA",
+    "width": 420,
+    "height": 280
+  },
+  "pachtvertrag-pareto-optimum-parit_t-parketthandel-und-passiva-wirtschaftsbegriffe-_bersicht.webp": {
+    "base64": "data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADQAwCdASoUAA0APzmGuVOvKSWisAgB4CcJaACdMoABgvTLsmb7G/4A+ozpmPRiRhTJOl7B5EfDIj/cuCuQ5/70UDZM1TrbWk3T5Dgc7sv9gVPgah6fdsgzXXyG4JvEyrijlQbNiuk5rkh2GdQE6PHfJdBDg2aOL+nhaAAA",
+    "width": 420,
+    "height": 280
+  },
+  "passivgesch_c3_a4ft-passivierung-passivkonto-und-paten-wichtige-wirtschaftsbegriffe.webp": {
+    "base64": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAABQAwCdASoUABAAPzmGuVOvKSWisAgB4CcJYwCsABq4oq9CJAD93ufB7vdhZgEDy2Y+EKqdQedhdn7RPB+RNiDAgxkCLhk4YljVUuRDgHDvi7TR/0AAAA==",
+    "width": 420,
+    "height": 328
+  },
+  "passivgesch_ft-passivierung-passivkonto-und-paten-wichtige-wirtschaftsbegriffe.webp": {
+    "base64": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAABQAwCdASoUABAAPzmGuVOvKSWisAgB4CcJYwCsABq4oq9CJAD93ufB7vdhZgEDy2Y+EKqdQedhdn7RPB+RNiDAgxkCLhk4YljVUuRDgHDvi7TR/0AAAA==",
+    "width": 420,
+    "height": 328
+  },
+  "pauschalbewertung-pauschbetrag-pensionsfonds-pensionsgesch_c3_a4ft-pensionskasse.webp": {
+    "base64": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADwAwCdASoUAA0APzmGuVOvKSWisAgB4CcJZwAAQtGITufWjm8VlwYAAP7TmXipw8mm6FMP9gjtUVlT4fPrxi2UEUczcKD2ctw1RqRwDgf6uF8jzHOT2stwPAA=",
+    "width": 420,
+    "height": 280
+  },
+  "pauschalbewertung-pauschbetrag-pensionsfonds-pensionsgesch_ft-pensionskasse.webp": {
+    "base64": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADwAwCdASoUAA0APzmGuVOvKSWisAgB4CcJZwAAQtGITufWjm8VlwYAAP7TmXipw8mm6FMP9gjtUVlT4fPrxi2UEUczcKD2ctw1RqRwDgf6uF8jzHOT2stwPAA=",
+    "width": 420,
+    "height": 280
+  },
+  "personalrat-personalwesen-und-personengesellschaften-wirtschaftsbegriffe-liste-_bersicht.webp": {
+    "base64": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADQAwCdASoUAA0APzmEuVOvKKWisAgB4CcJQBOgA6eb8G3Rq7qHHHQA/mTS0ASk/AiXWFs9NaTqWQEFSY+0StNSWC/bVBCzTX4/M5LhrIt4coBkXYmqkR+j3CS7unEK2+8mAAAA",
+    "width": 420,
+    "height": 280
+  },
+  "personalrat-personalwesen-und-personengesellschaften-wirtschaftsbegriffe-liste-_c3_9cbersicht.webp": {
+    "base64": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADQAwCdASoUAA0APzmEuVOvKKWisAgB4CcJQBOgA6eb8G3Rq7qHHHQA/mTS0ASk/AiXWFs9NaTqWQEFSY+0StNSWC/bVBCzTX4/M5LhrIt4coBkXYmqkR+j3CS7unEK2+8mAAAA",
+    "width": 420,
+    "height": 280
+  },
+  "personensteuer-pfandbrief-pfandeffekten-pfandrecht-pfandschein-und-pfandsysteme.webp": {
+    "base64": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACwAwCdASoUAA0APzmGuVOvKSWisAgB4CcJQBadBFfCpIYndAoXAAD+zbt+Qh56YPXtd0qfklosIH3tkMIaQ1Z8Obs3T6fNfNVEIbc1HXsmr1A5ll+6CfcAkYqvVRvKFEgtog3Woob6QAAA",
+    "width": 420,
+    "height": 270
+  },
+  "pf_c3_a4ndung-und-pflegeversicherung-wichtige-wirtschaftsbegriffe-liste.webp": {
+    "base64": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADQAwCdASoUAA0APzmGulOvKSWisAgB4CcJQBXDhDejVMu0NH4jTNAA/tNIxQ1T5fXJXaBy7TorgTrlINsTtUr0lXVmUQN6En3pdWCLYRQmsDu2dbJyi1vnvPpYeQAA",
+    "width": 420,
+    "height": 280
+  },
+  "pf_ndung-und-pflegeversicherung-wichtige-wirtschaftsbegriffe-liste.webp": {
+    "base64": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAAAwBACdASoUAA4APzmEuVOvKKWisAgB4CcJQBdgBDfebV2Y27jFkMIvvmAA/tNIwTy/r/JAw7cqRqDTf9se/ro5hkyJ80bKiY5pRJxCyCJcW3yme5h1dFNlbvMwThhXxMrUAAAA",
+    "width": 300,
+    "height": 200
+  },
+  "pflichtversicherung-phillips-kurve-und-physiokratie.webp": {
+    "base64": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADQAwCdASoUAA0APzmGuVOvKSWisAgB4CcJZACdABtHlUk+TvYAA4AA/c60JLToMYTJHPe5Dh6Ry2g66Rsg9xsuVMaoO4sYTRGWx6IqVMe7pUxtkf4wjMMAAAA=",
+    "width": 420,
+    "height": 280
+  },
+  "triviatas2.webp": {
+    "base64": "data:image/webp;base64,UklGRuQAAABXRUJQVlA4WAoAAAAQAAAAEwAABAAAQUxQSGUAAAAAEDBOf1EAVnwAOZsCACFDAAEAAACO7fbHrIHS5DirzpSpzudjShUKAx0j1led3tL/5fH/uc/W+N7d7OJ5AwCHqoCTRdbFtuTT1szgytP2/1ECADBoLkoKKh4aJUA/QDF/pMbDHABWUDggWAAAAPADAJ0BKhQABQA/OYa5U68pJaKwCAHgJwlqAJ0ygAN/2rUTjx76kgAAzaZGFt2iyG2/v1W3FCMeI63IvVUbNkaU+vzAIvqIQJSBDi0lryDyKgAkDSXgAAA=",
+    "width": 956,
+    "height": 242
+  },
+  "triviatas4.webp": {
+    "base64": "data:image/webp;base64,UklGRtwAAABXRUJQVlA4WAoAAAAQAAAAEwAABAAAQUxQSGUAAAAAAgYGAwAMJQEACBcAAAAAAAABAABJ4922JlTNKhVVuScTXokdFwQeBgql65z94d7I6djHsPDY5cHmrPMhAHLdadhc1nz7hdvF/6PU1Prb6yEAH0QeOQ05EjMUKx8/EismLikfAABWUDggUAAAAHADAJ0BKhQABQA/OYi6VC8pJaMwCAHgJwlAE6ADZkRK5/oeAADyZCHBPsUEB/qr8/ZrGLlW0KQeyTqL9Tqb6ZPWcTUgLepkiwAPjACYAAAA",
+    "width": 977,
+    "height": 242
+  }
+}
