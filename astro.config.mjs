@@ -14,6 +14,7 @@ try {
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://www.triviatas.de',
   integrations: [mdx(), sitemap(), react()],
   image: {
     service: { entrypoint: 'astro/assets/services/sharp' },
